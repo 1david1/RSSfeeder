@@ -42,8 +42,11 @@ app.controller("mainCtrl", ['$scope','FeedService', '$timeout', function ($scope
 
 		if (localStorage.getItem("historyItems")){
 			$scope.historyItems = JSON.parse(localStorage.getItem("historyItems"));
-			//as default, always show the first RSS link stored
-			$scope.loadFeed(JSON.parse(localStorage.getItem("historyItems"))[0]);
+			
+			//by default, always show the first RSS link stored
+			if ($scope.historyItems.length>0){
+				$scope.loadFeed(JSON.parse(localStorage.getItem("historyItems"))[0]);
+			};
 			$timeout(function() {
 				$scope.stopPropogation = false;
 			}, 1000);
